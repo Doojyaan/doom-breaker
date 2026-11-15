@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" role="img" aria-label="doom-breaker logo — small size cut">
+  <!-- Small-size cut (16-32 px) of the "Open Switch" mark: strokes thickened,
+       contact pads enlarged so the gap stays visible at 16 px. -->
+  <rect x="8" y="8" width="240" height="240" rx="52" fill="#0D1117" stroke="#21262D" stroke-width="4"/>
+  <g transform="translate(0,-6)">
+    <path d="M36 150 H92" stroke="#2BA640" stroke-width="20" stroke-linecap="round" fill="none"/>
+    <circle cx="36" cy="150" r="16" fill="#2BA640"/>
+    <circle cx="94" cy="150" r="13" fill="#9BE7A4"/>
+    <path d="M164 150 L212 92" stroke="#E5484D" stroke-width="20" stroke-linecap="round" fill="none"/>
+    <circle cx="164" cy="150" r="13" fill="#E5484D"/>
+    <circle cx="214" cy="90" r="16" fill="#E5484D"/>
+    <path d="M140 92 L110 150 L132 150 L114 208 L146 144 L124 144 Z"
+          fill="#F5A623" stroke="#F5A623" stroke-width="8" stroke-linejoin="round"/>
+  </g>
+</svg>

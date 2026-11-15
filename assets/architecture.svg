@@ -1,0 +1,74 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 660" role="img" aria-label="doom-breaker architecture">
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 Z" fill="#8B949E"/>
+    </marker>
+    <pattern id="dots" width="28" height="28" patternUnits="userSpaceOnUse">
+      <circle cx="2" cy="2" r="1.5" fill="#21262D"/>
+    </pattern>
+  </defs>
+  <rect width="1000" height="660" fill="#0D1117"/>
+  <rect width="1000" height="660" fill="url(#dots)" opacity="0.5"/>
+  <text x="500" y="42" text-anchor="middle" font-family="ui-monospace, 'Cascadia Code', Menlo, Consolas, monospace"
+        font-size="22" font-weight="700" fill="#E6EDF3">doom-breaker — call flow</text>
+
+  <g font-family="ui-monospace, 'Cascadia Code', Menlo, Consolas, monospace" font-size="18" fill="#E6EDF3">
+    <!-- A: entry -->
+    <rect x="350" y="64" width="300" height="56" rx="12" fill="#161B22" stroke="#6E7681" stroke-width="2"/>
+    <text x="500" y="98" text-anchor="middle">tool call — agent / script</text>
+
+    <!-- B: CLI -->
+    <rect x="370" y="160" width="260" height="56" rx="12" fill="#161B22" stroke="#1F6FEB" stroke-width="2"/>
+    <text x="500" y="194" text-anchor="middle" fill="#79B8FF">doom-breaker exec</text>
+
+    <!-- D1: preflight decision -->
+    <polygon points="500,254 640,300 500,346 360,300" fill="#161B22" stroke="#F5A623" stroke-width="2"/>
+    <text x="500" y="294" text-anchor="middle" font-size="16">circuit OPEN</text>
+    <text x="500" y="316" text-anchor="middle" font-size="16">and same args?</text>
+
+    <!-- R1: blocked -->
+    <rect x="80" y="264" width="220" height="72" rx="12" fill="#161B22" stroke="#E5484D" stroke-width="2"/>
+    <text x="190" y="294" text-anchor="middle" fill="#E5484D">⛔ BLOCK</text>
+    <text x="190" y="318" text-anchor="middle" font-size="15" fill="#8B949E">exit 3 + feedback</text>
+    <!-- C: run -->
+    <rect x="390" y="384" width="220" height="52" rx="12" fill="#161B22" stroke="#6E7681" stroke-width="2"/>
+    <text x="500" y="416" text-anchor="middle">run command</text>
+
+    <!-- D2: outcome decision -->
+    <polygon points="500,462 616,506 500,550 384,506" fill="#161B22" stroke="#F5A623" stroke-width="2"/>
+    <text x="500" y="512" text-anchor="middle" font-size="16">exit code 0?</text>
+
+    <!-- S: success -->
+    <rect x="80" y="470" width="220" height="72" rx="12" fill="#161B22" stroke="#2BA640" stroke-width="2"/>
+    <text x="190" y="500" text-anchor="middle" fill="#2BA640">✔ success</text>
+    <text x="190" y="524" text-anchor="middle" font-size="15" fill="#8B949E">reset → CLOSED</text>
+
+    <!-- F: record -->
+    <rect x="660" y="470" width="290" height="72" rx="12" fill="#161B22" stroke="#6E7681" stroke-width="2"/>
+    <text x="805" y="500" text-anchor="middle">record failure</text>
+    <text x="805" y="524" text-anchor="middle" font-size="14" fill="#8B949E">fingerprint(tool, args, error)</text>
+
+    <!-- O: open -->
+    <rect x="660" y="586" width="290" height="60" rx="12" fill="#161B22" stroke="#E5484D" stroke-width="2"/>
+    <text x="805" y="612" text-anchor="middle" fill="#E5484D">⚡ circuit OPEN</text>
+    <text x="805" y="634" text-anchor="middle" font-size="15" fill="#8B949E">.doombreaker/state.json</text>
+  </g>
+
+  <g stroke="#8B949E" stroke-width="2.5" fill="none" marker-end="url(#arrow)">
+    <path d="M500 120 V156"/>
+    <path d="M500 216 V250"/>
+    <path d="M360 300 H304"/>
+    <path d="M500 346 V380"/>
+    <path d="M500 436 V458"/>
+    <path d="M384 506 H304"/>
+    <path d="M616 506 H676"/>
+    <path d="M810 542 V582"/>
+  </g>
+  <g font-family="ui-monospace, 'Cascadia Code', Menlo, Consolas, monospace" font-size="15" fill="#8B949E">
+    <text x="332" y="292" text-anchor="middle">yes</text>
+    <text x="516" y="372">no / probe (changed args)</text>
+    <text x="344" y="496" text-anchor="middle">yes</text>
+    <text x="646" y="496">no</text>
+    <text x="820" y="566">repeats ≥ max</text>
+  </g>
+</svg>

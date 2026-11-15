@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 300" role="img" aria-label="doom-breaker banner">
+  <defs>
+    <pattern id="dots" width="28" height="28" patternUnits="userSpaceOnUse">
+      <circle cx="2" cy="2" r="1.5" fill="#21262D"/>
+    </pattern>
+  </defs>
+  <rect width="1200" height="300" fill="#0D1117"/>
+  <rect width="1200" height="300" fill="url(#dots)" opacity="0.55"/>
+
+  <!-- mark (scaled from assets/logo.svg — "Open Switch" construction) -->
+  <g transform="translate(84,54) scale(0.75)">
+    <rect x="8" y="8" width="240" height="240" rx="52" fill="#0D1117" stroke="#21262D" stroke-width="4"/>
+    <g transform="translate(0,-6)">
+      <path d="M36 150 H96" stroke="#2BA640" stroke-width="16" stroke-linecap="round" fill="none"/>
+      <circle cx="36" cy="150" r="14" fill="#2BA640"/>
+      <circle cx="96" cy="150" r="11" fill="#9BE7A4"/>
+      <path d="M160 150 L216 86" stroke="#E5484D" stroke-width="16" stroke-linecap="round" fill="none"/>
+      <circle cx="160" cy="150" r="11" fill="#E5484D"/>
+      <circle cx="216" cy="86" r="14" fill="#E5484D"/>
+      <path d="M138 96 L112 150 L130 150 L118 204 L146 146 L128 146 Z"
+            fill="#F5A623" stroke="#F5A623" stroke-width="6" stroke-linejoin="round"/>
+    </g>
+  </g>
+
+  <!-- wordmark + tagline -->
+  <text x="310" y="146" font-family="ui-monospace, 'Cascadia Code', 'JetBrains Mono', Menlo, Consolas, monospace"
+        font-size="72" font-weight="700" fill="#E6EDF3">doom-<tspan fill="#E5484D">breaker</tspan></text>
+  <text x="314" y="196" font-family="ui-monospace, 'Cascadia Code', 'JetBrains Mono', Menlo, Consolas, monospace"
+        font-size="21" fill="#8B949E">Deterministic circuit breaker for AI agents</text>
+  <text x="314" y="238" font-family="ui-monospace, 'Cascadia Code', 'JetBrains Mono', Menlo, Consolas, monospace"
+        font-size="19" fill="#6E7681">stops agents from repeating the same failure and burning tokens</text>
+
+  <!-- right: the story in three chips + verdict -->
+  <g font-family="ui-monospace, 'Cascadia Code', 'JetBrains Mono', Menlo, Consolas, monospace">
+    <rect x="900" y="92" width="56" height="44" rx="9" fill="#161B22" stroke="#3A4149" stroke-width="2"/>
+    <text x="928" y="122" font-size="22" font-weight="700" fill="#E5484D" text-anchor="middle">✕</text>
+    <rect x="972" y="92" width="56" height="44" rx="9" fill="#161B22" stroke="#3A4149" stroke-width="2"/>
+    <text x="1000" y="122" font-size="22" font-weight="700" fill="#E5484D" text-anchor="middle">✕</text>
+    <rect x="1044" y="92" width="56" height="44" rx="9" fill="#161B22" stroke="#3A4149" stroke-width="2"/>
+    <text x="1072" y="122" font-size="22" font-weight="700" fill="#E5484D" text-anchor="middle">✕</text>
+
+    <rect x="900" y="164" width="200" height="48" rx="10" fill="#1C2128" stroke="#E5484D" stroke-width="2"/>
+    <text x="1000" y="195" font-size="21" font-weight="700" fill="#E5484D" text-anchor="middle">⚡ CIRCUIT OPEN</text>
+  </g>
+</svg>

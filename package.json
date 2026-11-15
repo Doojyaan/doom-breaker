@@ -1,0 +1,35 @@
+{
+  "name": "doom-breaker",
+  "version": "0.1.0",
+  "description": "Deterministic circuit breaker that stops AI agents from repeating identical failing tool calls.",
+  "type": "module",
+  "bin": {
+    "doom-breaker": "dist/src/cli.js"
+  },
+  "main": "dist/src/core/circuit.js",
+  "files": [
+    "dist/src"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "lint": "tsc --noEmit",
+    "test": "npm run build && node --test \"dist/test/*.test.js\""
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "keywords": [
+    "ai-agent",
+    "circuit-breaker",
+    "agentic-ai",
+    "cli",
+    "developer-tools",
+    "reliability"
+  ],
+  "author": "Doojyaan (Syahadatul Aditya)",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/node": "^22.10.0",
+    "typescript": "^5.5.0"
+  }
+}

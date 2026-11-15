@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" role="img" aria-label="doom-breaker logo — one colour, dark backgrounds">
+  <!-- One-colour silhouette of the "Open Switch" mark for dark backgrounds. No tile. -->
+  <g transform="translate(0,-6)">
+    <path d="M36 150 H96" stroke="#E6EDF3" stroke-width="16" stroke-linecap="round" fill="none"/>
+    <circle cx="36" cy="150" r="14" fill="#E6EDF3"/>
+    <circle cx="96" cy="150" r="11" fill="#E6EDF3"/>
+    <path d="M160 150 L216 86" stroke="#E6EDF3" stroke-width="16" stroke-linecap="round" fill="none"/>
+    <circle cx="160" cy="150" r="11" fill="#E6EDF3"/>
+    <circle cx="216" cy="86" r="14" fill="#E6EDF3"/>
+    <path d="M138 96 L112 150 L130 150 L118 204 L146 146 L128 146 Z"
+          fill="#E6EDF3" stroke="#E6EDF3" stroke-width="6" stroke-linejoin="round"/>
+  </g>
+</svg>

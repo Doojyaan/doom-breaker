@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 940 520" role="img" aria-label="doom-breaker terminal demo">
+  <rect x="0" y="0" width="940" height="520" rx="16" fill="#161B22" stroke="#30363D" stroke-width="2"/>
+  <rect x="1" y="1" width="938" height="46" rx="15" fill="#1C2128"/>
+  <circle cx="26" cy="24" r="7" fill="#E5484D"/>
+  <circle cx="50" cy="24" r="7" fill="#F5A623"/>
+  <circle cx="74" cy="24" r="7" fill="#2BA640"/>
+  <text x="470" y="30" text-anchor="middle" font-family="ui-monospace, 'Cascadia Code', Menlo, Consolas, monospace"
+        font-size="15" fill="#8B949E">terminal — doom-breaker demo</text>
+
+  <g font-family="ui-monospace, 'Cascadia Code', Menlo, Consolas, monospace" font-size="16">
+    <!-- call 1 -->
+    <text x="28" y="86"><tspan fill="#2BA640">$</tspan><tspan fill="#E6EDF3"> doom-breaker exec --tool curl -- node fetch.js</tspan></text>
+    <text x="28" y="112" fill="#E5484D">  Error: ECONNREFUSED 127.0.0.1:4000</text>
+
+    <!-- call 2 -->
+    <text x="28" y="154"><tspan fill="#2BA640">$</tspan><tspan fill="#E6EDF3"> doom-breaker exec --tool curl -- node fetch.js</tspan></text>
+    <text x="28" y="180" fill="#E5484D">  Error: ECONNREFUSED 127.0.0.1:4000</text>
+
+    <!-- call 3 -->
+    <text x="28" y="222"><tspan fill="#2BA640">$</tspan><tspan fill="#E6EDF3"> doom-breaker exec --tool curl -- node fetch.js</tspan></text>
+    <text x="28" y="248" fill="#E5484D">  Error: ECONNREFUSED 127.0.0.1:4000</text>
+    <text x="28" y="274" fill="#F5A623">  ⚡ circuit OPEN for "curl" after 3 identical failures</text>
+
+    <!-- call 4: blocked -->
+    <text x="28" y="316"><tspan fill="#2BA640">$</tspan><tspan fill="#E6EDF3"> doom-breaker exec --tool curl -- node fetch.js</tspan></text>
+    <text x="28" y="342" fill="#E5484D">  ⛔ Blocked: tool "curl" produced the same failure 3 times in a row.</text>
+    <text x="28" y="368" fill="#8B949E">     Change strategy — different arguments, a different tool,</text>
+    <text x="28" y="394" fill="#8B949E">     or ask the user.</text>
+
+    <!-- recovery: probe with changed args -->
+    <text x="28" y="436"><tspan fill="#2BA640">$</tspan><tspan fill="#E6EDF3"> doom-breaker exec --tool curl -- node fetch.js --port 4001</tspan></text>
+    <text x="28" y="462" fill="#2BA640">  ✔ connected — circuit reset to CLOSED</text>
+    <text x="28" y="494" fill="#6E7681">  exit codes: 0 ok · 1 failed · 2 usage · 3 blocked</text>
+  </g>
+</svg>

@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" role="img" aria-label="doom-breaker concept C — blown fuse">
+  <!-- Concept C "Blown Fuse": a fuse that has blown — the wire melted apart,
+       spark leaping in the gap. Breaker = the thing that sacrifices itself to stop the surge. -->
+  <rect x="8" y="8" width="240" height="240" rx="52" fill="#0D1117" stroke="#21262D" stroke-width="4"/>
+  <rect x="52" y="94" width="152" height="68" rx="34" fill="#0D1117" stroke="#6E7681" stroke-width="8"/>
+  <rect x="34" y="84" width="24" height="88" rx="9" fill="#8B949E"/>
+  <rect x="198" y="84" width="24" height="88" rx="9" fill="#8B949E"/>
+  <path d="M58 128 H100" stroke="#E6EDF3" stroke-width="10" stroke-linecap="round"/>
+  <circle cx="107" cy="128" r="9" fill="#E6EDF3"/>
+  <path d="M198 128 H156" stroke="#E6EDF3" stroke-width="10" stroke-linecap="round"/>
+  <circle cx="149" cy="128" r="9" fill="#E6EDF3"/>
+  <path d="M134 100 L118 126 L128 126 L114 156 L136 120 L126 120 Z"
+        fill="#F5A623" stroke="#F5A623" stroke-width="4" stroke-linejoin="round"/>
+  <path d="M128 98 V86" stroke="#F5A623" stroke-width="6" stroke-linecap="round"/>
+  <path d="M124 158 V170" stroke="#F5A623" stroke-width="6" stroke-linecap="round"/>
+</svg>
