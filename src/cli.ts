@@ -9,6 +9,7 @@ import { spawnSync } from "node:child_process";
 import { Circuit } from "./core/circuit.js";
 import { argsFingerprint, fingerprint } from "./core/fingerprint.js";
 import { DEFAULT_STATE_FILE, FileStateStore } from "./core/state.js";
+import { McpProxy } from "./mcp/proxy.js";
 
 const EXIT_OK = 0;
 const EXIT_USAGE = 2;
@@ -26,15 +27,18 @@ const HELP = `doom-breaker — deterministic circuit breaker for agent tool call
 
 Usage:
   doom-breaker exec [--tool <name>] [--max-repeats <n>] [--state-file <path>] [--json] -- <command...>
+  doom-breaker mcp-proxy [--max-repeats <n>] [--state-file <path>] -- <downstream_command...>
   doom-breaker status [--state-file <path>]
   doom-breaker reset [<tool>] [--state-file <path>]
 
 Commands:
-  exec    Run a command under circuit-breaker protection. Repeated identical
-          failures trip the circuit; the next identical call is BLOCKED
-          (exit code 3) with a corrective message instead of burning tokens.
-  status  List recorded circuits and their state.
-  reset   Clear one tool's circuit (or all circuits when no tool is given).
+  exec       Run a command under circuit-breaker protection. Repeated identical
+             failures trip the circuit; the next identical call is BLOCKED
+             (exit code 3) with a corrective message instead of burning tokens.
+  mcp-proxy  Transparent stdio MCP proxy. Wrap any MCP server to intercept and
+             circuit-break repeating tool call failures.
+  status     List recorded circuits and their state.
+  reset      Clear one tool's circuit (or all circuits when no tool is given).
 
 Options:
   --tool <name>        Logical tool name (defaults to the command name).
@@ -154,6 +158,50 @@ async function execCommand(rest: string[]): Promise<void> {
   process.exit(child.status ?? 1);
 }
 
+async function mcpProxyCommand(rest: string[]): Promise<void> {
+  const args = parseArgs(rest);
+  if (args.command.length === 0) {
+    usageError("mcp-proxy requires a downstream command after --");
+  }
+
+  const store = new FileStateStore(args.stateFile);
+  const circuit = new Circuit(store, args.maxRepeats);
+
+  const proxy = new McpProxy({
+    circuit,
+    store,
+    command: args.command,
+    input: process.stdin,
+    output: process.stdout,
+    stderr: process.stderr,
+    onTrip: (tool, repeats) => {
+      process.stderr.write(
+        c.yellow(
+          `⚡ doom-breaker [mcp-proxy]: circuit OPEN for "${tool}" after ${repeats} identical failures. The next identical call will be blocked.\n`,
+        ),
+      );
+    },
+    onBlock: (tool, repeats) => {
+      process.stderr.write(
+        c.red(
+          `⛔ doom-breaker [mcp-proxy]: blocked repeating call for "${tool}" (${repeats} failures in a row). Change strategy.\n`,
+        ),
+      );
+    },
+  });
+
+  proxy.start();
+
+  const shutdown = async () => {
+    await proxy.stop();
+  };
+  process.on("SIGINT", shutdown);
+  process.on("SIGTERM", shutdown);
+
+  const exitCode = await proxy.waitForExit();
+  process.exit(exitCode ?? 0);
+}
+
 async function statusCommand(rest: string[]): Promise<void> {
   const args = parseArgs(rest);
   const state = await new FileStateStore(args.stateFile).load();
@@ -189,6 +237,7 @@ async function main(): Promise<void> {
 
   const [cmd, ...rest] = argv;
   if (cmd === "exec") return execCommand(rest);
+  if (cmd === "mcp-proxy") return mcpProxyCommand(rest);
   if (cmd === "status") return statusCommand(rest);
   if (cmd === "reset") return resetCommand(rest);
   usageError(`unknown command: ${cmd}`);

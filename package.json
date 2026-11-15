@@ -1,12 +1,17 @@
 {
   "name": "doom-breaker",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Deterministic circuit breaker that stops AI agents from repeating identical failing tool calls.",
   "type": "module",
   "bin": {
-    "doom-breaker": "dist/src/cli.js"
+    "doom-breaker": "./dist/src/cli.js"
   },
-  "main": "dist/src/core/circuit.js",
+  "main": "./dist/src/core/circuit.js",
+  "exports": {
+    ".": "./dist/src/core/circuit.js",
+    "./mcp": "./dist/src/mcp/proxy.js",
+    "./package.json": "./package.json"
+  },
   "files": [
     "dist/src"
   ],
